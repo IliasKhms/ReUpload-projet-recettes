@@ -1,0 +1,30 @@
+Le site sera composé de :
+
+Une page d'accueil affichant un texte de bienvenue et les 3 dernières recettes
+La page recettes, qui affichent une liste de toutes les recettes avec une barre de recherche
+La page d'une recette, affichée après avoir été cliquée sur l'un d'eux dans la liste.
+Une page de contact avec un formulaire
+Toutes les pages utilisent le même en-tête (header) et pied de page (footer).
+Le header doit contenir un menu.
+Vous pouvez ajouter des éléments supplémentaires au footer si vous le souhaitez.
+
+-----------------------------------------------------------------------------------------------
+
+Les routes ( = comment traiter les URLs demandées par un visiteur du site ) sont gérées dans le fichier /routes/web.php/
+Les contrôleurs seront placés dans le répertoire /app/Http/Controllers/
+Les modèles sont placés où vous voulez, par défaut dans le répertoire /app/Models/
+Les vues sont placées dans le répertoire /resources/views/
+
+-----------------------------------------------------------------------------------------------
+
+À partir de maintenant, lorsque l'on crée une vue qui doit utiliser le layout main.blade.php, il faudra:
+
+Utiliser le code blade suivant: @extends('layouts/main') pour déclarer que votre vue doit utiliser ce layout
+
+Déclarer une section blade:
+@section('content')
+  <h1>Home content</h1>
+@endsection
+
+La section content sera affichée dans le le fichier layout à l'endroit où est placé le code: @yield('content')
+
