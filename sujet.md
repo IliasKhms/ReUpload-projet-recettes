@@ -459,6 +459,8 @@ php artisan migrate:fresh --seed
 
 Vérifier que l'utilisateur a bien été créé dans la base de données.
 
+--------------------------------------------------------------------------------------------------------------- FAIT JUSQU'ICI --------------------------------------------------------------------------------------------------------------
+
 Créer une Factory pour recipe
 <https://laravel.com/docs/master/database-testing#defining-model-factories>
 

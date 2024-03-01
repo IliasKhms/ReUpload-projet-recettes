@@ -28,3 +28,14 @@ Déclarer une section blade:
 
 La section content sera affichée dans le le fichier layout à l'endroit où est placé le code: @yield('content')
 
+-----------------------------------------------------------------------------------------------
+
+Il va être possible de récupérer le propriétaire d'une recette ou bien les recettes d'un utilisateur très facilement (dans les controllers) :
+
+$recipe = \App\Models\Recipe::find(1); //trouver la recette avec l'id 1
+echo $recipe->user->name; //affiche le nom du propriétaire
+
+$recipes = \App\Models\User::find(1)->recipes; //get recipes from user id 1
+foreach ($recipes as $recipe) {
+    //loop on recipes
+}
