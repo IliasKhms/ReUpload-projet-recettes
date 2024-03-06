@@ -13,9 +13,14 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         \App\Models\Recipe::factory()
-        ->count(10)
-        ->for(\App\Models\User::factory()->create())
-        ->create();
-        ;
+    ->count(5)
+    ->for(\App\Models\User::factory()->create())
+    ->create();
+
+
+\App\Models\Recipe::factory()
+    ->count(5)
+    ->for(\App\Models\User::factory()->create())
+    ->create();
     }
 }
