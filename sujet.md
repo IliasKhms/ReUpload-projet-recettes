@@ -578,6 +578,8 @@ Pour récupérer des données d'un modèle, il faut appeler la méthode
 
 ``` php
 $recipes = \App\Models\Recipe::all(); //get all recipes
+$users = \App\Models\User::all(); //get all users
+
 ```
 
 Pour passer une variable à une vue, il faut faire:
