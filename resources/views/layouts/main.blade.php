@@ -11,11 +11,10 @@
 </head>
 <body>
     <div class="">
-
       <nav class="navbar py-4">
         <div class="container">
           <div class="navbar-brand">
-            <a class="navbar-item" href="#">
+            <a class="navbar-item" href="/">
               <span class="icon">
                 <i class="fas fa-utensils" style="font-size:26px; width:26px"></i>
               </span>
@@ -28,9 +27,9 @@
           </div>
           <div class="navbar-menu">
             <div class="navbar-start">
-                 <a class="navbar-item" href="#">Home</a>
-                 <a class="navbar-item" href="#">Recettes</a>
-                 <a class="navbar-item" href="#">Contact</a>
+                 <a class="navbar-item" href="/">Home</a>
+                 <a class="navbar-item" href="/recettes">Recettes</a>
+                 <a class="navbar-item" href="/contacts">Contact</a>
                  <!-- <a href="/phpliteadmin.php">DBADMIN</a> -->
              </div>
             <div class="navbar-item">
@@ -55,14 +54,12 @@
         <div class="container">
           <div class="mb-6 columns is-multiline is-centered">
             <div class="column is-8 has-text-centered">
-              <span class="has-text-grey-dark">@yield('title','Home')</span>
               <h2 class="mt-2 mb-4 is-size-1 is-size-3-mobile has-text-weight-bold">Recettes</h2>
               <p class="subtitle has-text-grey">Le meilleur de la cuisine</p>
             </div>
           </div>
 
           @yield('content')
-
 
         </div>
       </section>
