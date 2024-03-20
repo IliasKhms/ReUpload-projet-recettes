@@ -10,7 +10,13 @@
         <h2 class="mt-2 mb-2 is-size-3 is-size-4-mobile has-text-weight-bold"><a href="/recettes/{{ $recipe->url }}" style="color : black">{{ $recipe->title }}</a></h2>
         <p><strong> {{ $recipe->user->name }} </strong></p>
         <p> {{ $recipe->ingredients }}</p>
-        <p class="subtitle has-text-grey">{{ $recipe->content }}</p>
+        <p class="subtitle has-text-grey">
+            <?php
+            $content = $recipe->content;
+            $content = strlen($content) > 100 ? substr($content, 0, 100) . "..." : $content;
+            echo $content;
+            ?>
+        </p>
         <a href="/recettes/{{ $recipe->url }}">Read More</a>
       </div>
     @endforeach
