@@ -31,3 +31,7 @@ Route::get('/recettes', [RecettesController::class, 'index']);
 
 use App\Http\Controllers\RecipesController;
 Route::get('/recettes/{url}',[RecipesController::class, 'show']);
+
+use App\Http\Controllers\AdminRecipesController;
+Route::get('/admin/recipes', [AdminRecipesController::class, 'index']); 
+
