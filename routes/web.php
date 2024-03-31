@@ -23,6 +23,8 @@ Route::get('/', [HomeController::class, 'index']);
 
 use App\Http\Controllers\ContactController;
 Route::get('/contacts', [ContactController::class, 'index']);
+Route::post('/contacts', [ContactController::class, 'store']);
+
 
 use App\Http\Controllers\RecettesController;
 Route::get('/recettes', [RecettesController::class, 'index']);

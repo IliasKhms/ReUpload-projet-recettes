@@ -1,17 +1,19 @@
 @extends('layouts/main')
 
 @section('content')
-    <form action="contact.php" class="form">
+    <form  method="POST" action = "/contacts" >
+        @csrf
+       
         <label for="firstname">
-            <input type="text" name="firstname" id="firstname" placeholder="Nom">
+            <input type="text" name="nom" id="nom" placeholder="Nom">
         </label>
 
         <label for="lastname">
-            <input type="text" name="lastname" id="lastname" placeholder="Prénom">
+            <input type="text" name="prenom" id="prenom" placeholder="Prénom">
         </label>
 
         <label for="email">
-            <input type="email" name="email" id="email" placeholder="Email">
+            <input type="email" name="mail" id="mail" placeholder="Mail">
         </label>
 
         <label for="message">
