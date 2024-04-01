@@ -15,10 +15,15 @@
             echo $content;
             ?>
         </p>
-        <input type="submit" class="btn" value="Modifier/Supprimer">
-       
+
+        <a href="/recettes/{{ $recipe->id }}/edit"><input type="submit" class="btn" value="Modifier"></a>
+        <form action="{{ route('adminrecipes.destroy', $recipe->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Supprimer</button>
+        </form>
       </div>
     @endforeach
   </div>
-  <h1>Publier une nouvelle recette</h1>
+    <input type="submit" class="btn" value="Ajouter une recette">
 @endsection

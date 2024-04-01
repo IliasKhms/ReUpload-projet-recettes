@@ -48,7 +48,8 @@ class AdminRecipesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $recipe = \App\Models\Recipe::where('id',$id)->first(); 
+        return view('editrecipe', array('recipe' => $recipe));
     }
 
     /**
@@ -64,6 +65,8 @@ class AdminRecipesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $recipe = \App\Models\Recipe::where('id',$id)->first(); 
+        $recipe->delete();
+        return redirect('/admin/recipes');
     }
 }
