@@ -28,7 +28,7 @@ class RecipesController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -53,7 +53,7 @@ class RecipesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+    
     }
 
     /**
@@ -61,6 +61,6 @@ class RecipesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
     }
 }

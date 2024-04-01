@@ -1,7 +1,7 @@
 @extends('layouts/main')
 
 @section('content')
-    <form  method="POST" action = "/contacts" >
+    <form  method="POST" action = "/contacts" class="form">
         @csrf
        
         <label for="firstname">

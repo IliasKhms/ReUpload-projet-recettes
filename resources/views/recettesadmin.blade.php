@@ -15,9 +15,8 @@
             echo $content;
             ?>
         </p>
-        <a href="/recettes/{{ $recipe->url }}">Read More</a>
-        <input type="submit" class="btn" value="Modifier">
-        <input type="submit" class="btn" value="Supprimer">
+        <input type="submit" class="btn" value="Modifier/Supprimer">
+       
       </div>
     @endforeach
   </div>
