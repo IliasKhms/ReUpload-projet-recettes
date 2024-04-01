@@ -16,7 +16,10 @@
             ?>
         </p>
 
-        <a href="/recettes/{{ $recipe->id }}/edit"><input type="submit" class="btn" value="Modifier"></a>
+        <form action="{{ route('adminrecipes.edit', $recipe->id) }}">
+            @csrf
+            <button type="submit">Modifier</button>
+        </form>
         <form action="{{ route('adminrecipes.destroy', $recipe->id) }}" method="POST">
             @csrf
             @method('DELETE')

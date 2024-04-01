@@ -48,8 +48,8 @@ class AdminRecipesController extends Controller
      */
     public function edit(string $id)
     {
-        $recipe = \App\Models\Recipe::where('id',$id)->first(); 
-        return view('editrecipe', array('recipe' => $recipe));
+        $recipe = \App\Models\Recipe::findOrFail($id);
+        return view('editrecipe', compact('recipe'));
     }
 
     /**
@@ -57,7 +57,13 @@ class AdminRecipesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $recipe = \App\Models\Recipe::findOrFail($id);
+        $recipe->title = $request->title;
+        $recipe->ingredients = $request->ingredients;
+        $recipe->content = $request->content;
+        $recipe->save();
+
+        return redirect('/admin/recipes');
     }
 
     /**
