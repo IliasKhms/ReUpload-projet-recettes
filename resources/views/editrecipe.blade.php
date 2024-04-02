@@ -1,7 +1,7 @@
 @extends('layouts/main')
 
 @section('content')
-<form action="{{ route('admin.recipes.update', $recipe->id) }}" method="POST">
+<form action="{{ route('adminrecipes.update', $recipe->id) }}" method="POST">
     @csrf
     @method('PUT')
     <div class="form-group">
