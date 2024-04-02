@@ -1,7 +1,7 @@
 @extends('layouts/main')
 
 @section('content')
-<form action="{{ route('adminrecipes.update', $recipe->id) }}" method="POST">
+<form action="{{ route('adminrecipes.update', $recipe->id) }}" method="POST" class="form">
     @csrf
     @method('PUT')
     <div class="form-group">
@@ -13,10 +13,10 @@
         <input type="text" id="ingredients" name="ingredients" value="{{ old('ingredients', $recipe->ingredients) }}">
     
     <label for="content">Préparation</label>
-        <input type="text" id="content" name="content" value="{{ old('content', $recipe->content) }}">
+        <textarea  type="text" id="content" name="content" value="{{ old('content', $recipe->content) }}"></textarea>
 
     </div>
-    <button type="submit">Mettre à jour</button>
+    <input type="submit" class="btn"value ="Mettre à jour"></input>
 </form>
 @endsection
 

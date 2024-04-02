@@ -1,7 +1,7 @@
 @extends('layouts/main')
 
 @section('content')
-<form action="{{ route('adminrecipes.store') }}" method="POST">
+<form action="{{ route('adminrecipes.store') }}" method="POST" class="form">
     @csrf
     <div class="form-group">
         <label for="title">Nom</label>
@@ -11,8 +11,9 @@
         <input type="text" id="ingredients" name="ingredients" value="">
 
         <label for="content">Préparation</label>
-        <input type="text" id="content" name="content" value="">
+        <textarea type="text" name="content" id="content" placeholder=""></textarea>
+        
     </div>
-    <button type="submit">Créer recette</button>
+    <input type="submit" class="btn"value ="Créer recette"></input>
 </form>
 @endsection
