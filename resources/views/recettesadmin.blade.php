@@ -28,5 +28,8 @@
       </div>
     @endforeach
   </div>
-    <input type="submit" class="btn" value="Ajouter une recette">
+  <form action="{{ route('adminrecipes.create')}}">
+            @csrf
+            <button type="submit">Ajouter une recette</button>
+        </form>
 @endsection

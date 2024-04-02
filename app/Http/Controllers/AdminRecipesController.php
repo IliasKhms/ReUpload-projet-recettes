@@ -24,7 +24,7 @@ class AdminRecipesController extends Controller
      */
     public function create()
     {
-        //
+        return view('createrecipe');
     }
 
     /**
@@ -32,8 +32,16 @@ class AdminRecipesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+    $recipe = new \App\Models\Recipe();
+    $recipe->title = $request->title;
+    $recipe->ingredients = $request->ingredients;
+    $recipe->content = $request->content;
+    $recipe->owner_id = 1;
+    $recipe->url = $request->title;
+    $recipe->save();
+
+    return redirect('/admin/recipes');
+}
 
     /**
      * Display the specified resource.
