@@ -1,6 +1,18 @@
 @extends('layouts/main')
 
 @section('content')
+    @php
+        $ingredientsList = '';
+        $ingredientCount = count($recipe->ingredients);
+        $index = 0;
+        foreach ($recipe->ingredients as $ingredient) {
+            $ingredientsList .= $ingredient->ingredients;
+            if ($index < $ingredientCount - 1) {
+                $ingredientsList .= ', ';
+            }
+            $index++;
+        }
+    @endphp
 <form action="{{ route('adminrecipes.update', $recipe->id) }}" method="POST" class="form">
     @csrf
     @method('PUT')
@@ -10,7 +22,7 @@
         <input type="text" id="title" name="title" value="{{ old('title', $recipe->title) }}">
 
     <label for="ingredients">Ingrédients</label>
-        <input type="text" id="ingredients" name="ingredients" value="{{ old('ingredients', $recipe->ingredients) }}">
+        <input type="text" id="ingredients" name="ingredients" value="{{ old('ingredients', $ingredientsList) }}">
 
     <label for="content">Préparation</label>
         <textarea  type="text" id="content" name="content" value="{{ old('content', $recipe->content) }}"></textarea>
@@ -19,22 +31,3 @@
     <input type="submit" class="btn"value ="Mettre à jour"></input>
 </form>
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

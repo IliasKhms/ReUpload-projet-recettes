@@ -32,13 +32,23 @@ class AdminRecipesController extends Controller
      */
     public function store(Request $request)
     {
+
     $recipe = new \App\Models\Recipe();
     $recipe->title = $request->title;
-    $recipe->ingredients = $request->ingredients;
     $recipe->content = $request->content;
     $recipe->owner_id = 1;
     $recipe->url = $request->title;
     $recipe->save();
+
+    $ingredientsArray = explode(',', $request->ingredients);
+    foreach ($ingredientsArray as $ingredientName) {
+        $ingredient = new \App\Models\Ingredient();
+        $ingredient->ingredients = $ingredientName;
+        $ingredient->idrecipe = $recipe->id;
+        $ingredient->quantitee = 1;
+        $ingredient->type = "cuillères";
+        $ingredient->save();
+    }
 
     return redirect('/admin/recipes');
 }
@@ -79,7 +89,7 @@ class AdminRecipesController extends Controller
      */
     public function destroy(string $id)
     {
-        $recipe = \App\Models\Recipe::where('id',$id)->first(); 
+        $recipe = \App\Models\Recipe::where('id',$id)->first();
         $recipe->delete();
         return redirect('/admin/recipes');
     }

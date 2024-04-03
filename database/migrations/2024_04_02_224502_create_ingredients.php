@@ -16,9 +16,13 @@ return new class extends Migration
             $table->string('ingredients');
             $table->integer('quantitee');
             $table->string('type');
-            $table->unsignedBigInteger('idrecipe')->nullable();
-            $table->foreign('idrecipe')->references('id')->on('recipes');
+            $table->foreignId('idrecipe')->constrained('recipes', 'id');
+            $table->foreign('idrecipe')
+            ->references('id')
+            ->on('recipes')
+            ->onDelete('cascade');
             $table->timestamps();
+
         });
     }
 
