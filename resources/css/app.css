@@ -44,3 +44,9 @@
     color: var(--couleur-3);
 }
 
+
+/*CSS du système de note par étoiles*/
+
+.checked{
+    color: var(--couleur-2);
+}

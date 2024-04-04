@@ -9,4 +9,17 @@
         <p> {{ $recipe->ingredients }}</p>
         <p class="subtitle has-text-grey">{{ $recipe->content }}</p>
     </div>
+
+    <div class="star_rating">
+        <span class="fas fa-star star" data-star="1" data-recipe-id="{{ $recipe->id }}"></span>
+        <span class="fas fa-star star" data-star="2" data-recipe-id="{{ $recipe->id }}"></span>
+        <span class="fas fa-star star" data-star="3" data-recipe-id="{{ $recipe->id }}"></span>
+        <span class="fas fa-star star" data-star="4" data-recipe-id="{{ $recipe->id }}"></span>
+        <span class="fas fa-star star" data-star="5" data-recipe-id="{{ $recipe->id }}"></span>
+        &nbsp; note: <span id="note">-</span>
+        <span > étoiles</span> 
+    </div> 
+       
 @endsection
+
+
