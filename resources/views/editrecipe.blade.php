@@ -1,33 +1,53 @@
 @extends('layouts/main')
 
 @section('content')
-    @php
-        $ingredientsList = '';
-        $ingredientCount = count($recipe->ingredients);
-        $index = 0;
-        foreach ($recipe->ingredients as $ingredient) {
-            $ingredientsList .= $ingredient->ingredients;
-            if ($index < $ingredientCount - 1) {
-                $ingredientsList .= ', ';
-            }
-            $index++;
-        }
-    @endphp
 <form action="{{ route('adminrecipes.update', $recipe->id) }}" method="POST" class="form">
     @csrf
     @method('PUT')
     <div class="form-group">
+        <label for="title">Nom</label>
+        <input type="text" id="title" name="title" value="{{ old('title', $recipe->title) }}" required>
 
-    <label for="title">Nom</label>
-        <input type="text" id="title" name="title" value="{{ old('title', $recipe->title) }}">
-
-    <label for="ingredients">Ingrédients</label>
-        <input type="text" id="ingredients" name="ingredients" value="{{ old('ingredients', $ingredientsList) }}">
-
-    <label for="content">Préparation</label>
-        <textarea  type="text" id="content" name="content" value="{{ old('content', $recipe->content) }}"></textarea>
+        <div id="ingredients-container">
+            @foreach ($recipe->ingredients as $index => $ingredient)
+            <div class="ingredient">
+                <br> <br>
+                <label>Nom de l'ingrédient:</label>
+                <input type="text" name="ingredient_name[]" value="{{ old('ingredient_name.' . $index, $ingredient->ingredients) }}" required>
+                <label>Quantité (par personne):</label>
+                <input type="number" name="ingredient_quantity[]" value="{{ old('ingredient_quantity.' . $index, $ingredient->quantitee) }}" required>
+                <label>Type:</label>
+                <input type="text" name="ingredient_type[]" value="{{ old('ingredient_type.' . $index, $ingredient->type) }}" required>
+                <button type="button" class="remove-ingredient" style="margin-left: auto; margin-right: auto; display: block;">Supprimer</button>
+            </div>
+            @endforeach
+        </div>
+        <br>
+        <button type="button" id="add-ingredient" style="margin-left: auto; margin-right: auto; display: block;">Ajouter un ingrédient</button>
+        <br>
+        <label for="content">Préparation</label>
+        <textarea type="text" name="content" id="content" required>{{ old('content', $recipe->content) }}</textarea>
 
     </div>
-    <input type="submit" class="btn"value ="Mettre à jour"></input>
+    <input type="submit" class="btn" value="Mettre à jour"></input>
 </form>
+
+<script>
+    // JavaScript pour ajouter et supprimer des champs d'ingrédients dynamiquement
+    document.getElementById('add-ingredient').addEventListener('click', function() {
+        var ingredient = document.querySelector('.ingredient').cloneNode(true);
+        ingredient.querySelectorAll('input').forEach(function(input) {
+            input.value = '';
+        });
+        document.getElementById('ingredients-container').appendChild(ingredient);
+    });
+
+    document.getElementById('ingredients-container').addEventListener('click', function(event) {
+        if (event.target.classList.contains('remove-ingredient')) {
+            if (document.querySelectorAll('.ingredient').length > 1) { // Vérifier s'il y a plus d'un ingrédient avant de permettre la suppression
+                event.target.closest('.ingredient').remove();
+            }
+        }
+    });
+</script>
 @endsection

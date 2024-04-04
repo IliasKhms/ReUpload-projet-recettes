@@ -7,9 +7,11 @@
                 style="color : black">{{ $recipe->title }}</a></h2>
         <p><strong> {{ $recipe->user->name }} </strong></p>
         <p>
+            <br>
             @foreach ($recipe->ingredients as $ingredient)
-                {{ $ingredient->ingredients }}@if (!$loop->last),@endif
+                {{ $ingredient->ingredients }} : {{ $ingredient->quantitee }} {{ $ingredient->type }} <br> @if (!$loop->last)@endif
             @endforeach
+            <br>
         </p>
         <p class="subtitle has-text-grey">{{ $recipe->content }}</p>
     </div>

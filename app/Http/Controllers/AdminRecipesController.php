@@ -40,13 +40,12 @@ class AdminRecipesController extends Controller
     $recipe->url = $request->title;
     $recipe->save();
 
-    $ingredientsArray = explode(',', $request->ingredients);
-    foreach ($ingredientsArray as $ingredientName) {
+    foreach ($request->ingredient_name as $key => $ingredientName) {
         $ingredient = new \App\Models\Ingredient();
         $ingredient->ingredients = $ingredientName;
         $ingredient->idrecipe = $recipe->id;
-        $ingredient->quantitee = 1;
-        $ingredient->type = "cuillères";
+        $ingredient->quantitee = $request->ingredient_quantity[$key];
+        $ingredient->type = $request->ingredient_type[$key];
         $ingredient->save();
     }
 
@@ -77,9 +76,20 @@ class AdminRecipesController extends Controller
     {
         $recipe = \App\Models\Recipe::findOrFail($id);
         $recipe->title = $request->title;
-        $recipe->ingredients = $request->ingredients;
         $recipe->content = $request->content;
         $recipe->save();
+
+        $recipe->ingredients()->delete();
+
+
+        foreach ($request->ingredient_name as $key => $ingredientName) {
+            $ingredient = new \App\Models\Ingredient();
+            $ingredient->ingredients = $ingredientName;
+            $ingredient->idrecipe = $recipe->id;
+            $ingredient->quantitee = $request->ingredient_quantity[$key];
+            $ingredient->type = $request->ingredient_type[$key];
+            $ingredient->save();
+        }
 
         return redirect('/admin/recipes');
     }

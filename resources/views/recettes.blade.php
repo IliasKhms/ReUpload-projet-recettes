@@ -8,9 +8,11 @@
         <h2 class="mt-2 mb-2 is-size-3 is-size-4-mobile has-text-weight-bold"><a href="/recettes/{{ $recipe->url }}" style="color : black">{{ $recipe->title }}</a></h2>
         <p><strong> {{ $recipe->user->name }} </strong></p>
         <p>
+            <br>
             @foreach ($recipe->ingredients as $ingredient)
                 {{ $ingredient->ingredients }}@if (!$loop->last),@endif
             @endforeach
+
         </p>
         <p class="subtitle has-text-grey">
             <?php
