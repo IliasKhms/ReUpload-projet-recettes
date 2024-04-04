@@ -15,9 +15,9 @@
                 <input type="text" name="ingredient_name[]" required>
                 <label>Quantité (par personne):</label>
                 <input type="number" name="ingredient_quantity[]" required>
-                <label>Type:</label>
+                <label>Type (gramme, cuillère, etc.):</label>
                 <input type="text" name="ingredient_type[]" required>
-                <!-- Afficher le bouton "Supprimer" pour tous les ingrédients -->
+
                 <button type="button" class="remove-ingredient" style="margin-left: auto; margin-right: auto; display: block;">Supprimer</button>
             </div>
         </div>
@@ -48,7 +48,6 @@
     // Suppression d'un ingrédient
     document.getElementById('ingredients-container').addEventListener('click', function(event) {
         if (event.target.classList.contains('remove-ingredient')) {
-            // Vérifier s'il y a plus d'un ingrédient avant de supprimer
             if (document.querySelectorAll('.ingredient').length > 1) {
                 event.target.closest('.ingredient').remove();
             }

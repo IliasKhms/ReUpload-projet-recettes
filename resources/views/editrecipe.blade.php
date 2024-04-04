@@ -16,7 +16,7 @@
                 <input type="text" name="ingredient_name[]" value="{{ old('ingredient_name.' . $index, $ingredient->ingredients) }}" required>
                 <label>Quantité (par personne):</label>
                 <input type="number" name="ingredient_quantity[]" value="{{ old('ingredient_quantity.' . $index, $ingredient->quantitee) }}" required>
-                <label>Type:</label>
+                <label>Type (gramme, cuillère, etc.):</label>
                 <input type="text" name="ingredient_type[]" value="{{ old('ingredient_type.' . $index, $ingredient->type) }}" required>
                 <button type="button" class="remove-ingredient" style="margin-left: auto; margin-right: auto; display: block;">Supprimer</button>
             </div>
