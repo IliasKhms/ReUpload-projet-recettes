@@ -15,5 +15,28 @@ Exécuter les commandes suivantes :
 ``` bash
   npm install
   npm run build
+  php artisan migrate:fresh --seed
   php artisan serve
   ```
+
+## Accès au CRUD
+
+Pour accéder au CRUD, il n'y a pas de système d'authentification. L'accès se fait donc par la route admin suivante :
+http://localhost:8000/admin/recipes
+
+## Fonctionnalités supplémentaires implentées
+
+<h2> 1 - Notes (+)</h2>
+
+
+
+<h2> 2 - Gestion ingrédients (+)</h2>
+
+Une table Ingredients a été créée. En conséquence, la lecture, l'ajout, la suppression et la modification d'une recette ont été mis à jour.
+
+<h2> 3 - Gestion quantité ingrédient et nombre de personnes (+++)</h2>
+
+Les attributs Quantitee et Type ont été ajoutés à la table Ingredients. En conséquence, la lecture, l'ajout, la suppression et la modification d'une recette ont été mis à jour. Par ailleurs, à la lecture d'une recette, un bouton de modification du nombre de personne(s) (minimum 1, maximum 20, par défaut 2) a été implémenté. La modification de sa valeur modifie les quantités d'ingrédients.
+
+<h2> 4 - Un Webchat avec Pusher et Vue.js (++)</h2>
+

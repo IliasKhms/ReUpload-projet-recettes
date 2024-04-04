@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('owner_id')->default(0)->index('recipes_fk1_idx');
-            $table->mediumText('title');
-            $table->longText('content');
-            $table->longText('ingredients');
+            $table->mediumText('title')->nullable();
+            $table->longText('content')->nullable();
             $table->string('price', 45)->default('Mid-range');
             $table->string('url', 200)->unique('url_UNIQUE');
             $table->text('tags')->nullable();

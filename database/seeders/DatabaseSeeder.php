@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
     ->count(5)
     ->for(\App\Models\User::factory()->create())
     ->create();
+    \App\Models\Ingredient::factory(50)->create();
     }
 }

@@ -34,7 +34,7 @@ use App\Http\Controllers\RecipesController;
 Route::get('/recettes/{url}',[RecipesController::class, 'show']);
 
 use App\Http\Controllers\AdminRecipesController;
-Route::get('/admin/recipes', [AdminRecipesController::class, 'index']); 
+Route::get('/admin/recipes', [AdminRecipesController::class, 'index']);
 Route::get('/admin/recipes/{id}/edit', [AdminRecipesController::class,'edit'])->name('adminrecipes.edit');
 Route::put('/admin/recipes/{id}', [AdminRecipesController::class, 'update'])->name('adminrecipes.update');
 Route::delete('/admin/recipes/{id}', [AdminRecipesController::class, 'destroy'])->name('adminrecipes.destroy');

@@ -32,13 +32,22 @@ class AdminRecipesController extends Controller
      */
     public function store(Request $request)
     {
+
     $recipe = new \App\Models\Recipe();
     $recipe->title = $request->title;
-    $recipe->ingredients = $request->ingredients;
     $recipe->content = $request->content;
     $recipe->owner_id = 1;
     $recipe->url = $request->title;
     $recipe->save();
+
+    foreach ($request->ingredient_name as $key => $ingredientName) {
+        $ingredient = new \App\Models\Ingredient();
+        $ingredient->ingredients = $ingredientName;
+        $ingredient->idrecipe = $recipe->id;
+        $ingredient->quantitee = $request->ingredient_quantity[$key];
+        $ingredient->type = $request->ingredient_type[$key];
+        $ingredient->save();
+    }
 
     return redirect('/admin/recipes');
 }
@@ -67,9 +76,20 @@ class AdminRecipesController extends Controller
     {
         $recipe = \App\Models\Recipe::findOrFail($id);
         $recipe->title = $request->title;
-        $recipe->ingredients = $request->ingredients;
         $recipe->content = $request->content;
         $recipe->save();
+
+        $recipe->ingredients()->delete();
+
+
+        foreach ($request->ingredient_name as $key => $ingredientName) {
+            $ingredient = new \App\Models\Ingredient();
+            $ingredient->ingredients = $ingredientName;
+            $ingredient->idrecipe = $recipe->id;
+            $ingredient->quantitee = $request->ingredient_quantity[$key];
+            $ingredient->type = $request->ingredient_type[$key];
+            $ingredient->save();
+        }
 
         return redirect('/admin/recipes');
     }
@@ -79,7 +99,7 @@ class AdminRecipesController extends Controller
      */
     public function destroy(string $id)
     {
-        $recipe = \App\Models\Recipe::where('id',$id)->first(); 
+        $recipe = \App\Models\Recipe::where('id',$id)->first();
         $recipe->delete();
         return redirect('/admin/recipes');
     }
