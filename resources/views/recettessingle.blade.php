@@ -26,6 +26,12 @@
     </div>
 
     <div class="star_rating">
+    <br></br>
+    <form action="/recettes/{{ $recipe->url }}" method="post">
+        @csrf
+        <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
+        <input type="hidden" name="rating" id="rating">
+
         <span class="fas fa-star star" data-star="1" data-recipe-id="{{ $recipe->id }}"></span>
         <span class="fas fa-star star" data-star="2" data-recipe-id="{{ $recipe->id }}"></span>
         <span class="fas fa-star star" data-star="3" data-recipe-id="{{ $recipe->id }}"></span>
@@ -33,9 +39,18 @@
         <span class="fas fa-star star" data-star="5" data-recipe-id="{{ $recipe->id }}"></span>
         &nbsp; note: <span id="note">-</span>
         <span > étoiles</span> 
+        <button type="submit">Valider</button>
+    </form>
+    <br></br>
+        <p> Note : {{ $recipe->rate_avg }}/5 </p>
+    <br></br>
     </div> 
        
-
+    @if (session('success'))
+        <div class="notification is-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <script>
         // Mettre à jour les quantités d'ingrédients lorsque le nombre de personnes change
         document.getElementById('increment').addEventListener('click', function() {

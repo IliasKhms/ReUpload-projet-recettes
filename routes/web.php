@@ -42,4 +42,4 @@ Route::get('/admin/recipes/create', [AdminRecipesController::class, 'create'])->
 Route::post('/admin/recipes', [AdminRecipesController::class,'store'])->name('adminrecipes.store');
 
 use App\Http\Controllers\RatingController;
-Route::post('/rate', [RatingController::class,'store']);
+Route::post('/recettes/{url}', [RatingController::class,'store'])->name('ratings.store');

@@ -11,7 +11,7 @@ function init() {
 }
 function saveRating(e) {
     removeEventListenerToAllStar();
-    //console.log(e.target.dataset.star);
+    console.log(e.target.dataset.star);
     note.innerText = e.target.dataset.star;
 
 }
@@ -59,7 +59,7 @@ function getStarleft(star){
 }
 
 
-function rateRecipe(note, recipeId) {
+/*function rateRecipe(note, recipeId) {
     fetch('/rate', {
         method: 'POST',
         headers: {
@@ -92,3 +92,45 @@ function rateRecipe(note, recipeId) {
         });
     })
 }
+*/
+
+function rateRecipe(note, recipeId) {
+    fetch('/recettes/' + recipeId, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({
+            // Utilisez la note passée en paramètre
+            rating: note
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Mettez à jour les étoiles si nécessaire
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+stars.forEach(star => {
+    star.addEventListener('click', function(e) {
+        // Obtenez la note à partir de l'attribut data-star de l'étoile
+        const rating = e.target.dataset.star;
+
+        // Obtenez l'ID de la recette à partir de l'attribut data-recipe-id de l'étoile
+        const recipeId = e.target.dataset.recipeId;
+
+       
+    });
+});
+
+document.querySelectorAll('.star').forEach(function(star) {
+    star.addEventListener('click', function() {
+        const rating = this.getAttribute('data-star');
+        document.getElementById('rating').value = rating;
+    });
+});
+
