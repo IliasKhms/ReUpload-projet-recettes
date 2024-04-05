@@ -7,13 +7,16 @@ use Illuminate\Http\Request;
 class RecipesController extends Controller
 {
     public function show($recipe_url) {
-        $recipes = \App\Models\Recipe::where('url',$recipe_url)->first(); //get first recipe with recipe_nam == $recipe_name
-        $users = \App\Models\User::all(); //get all users
-        return view('recettessingle',
-            array('recipe' => $recipes),
-            array('users' => $users)
-        );
-     }
+        $recipe = \App\Models\Recipe::where('url', $recipe_url)->first(); // Récupérer la recette correspondant à l'URL
+        $users = \App\Models\User::all(); // Récupérer tous les utilisateurs
+        $comments = \App\Models\Commentaire::where('recipe_id', $recipe->id)->get(); // Récupérer tous les commentaires associés à cette recette
+    
+        return view('recettessingle', [
+            'recipe' => $recipe,
+            'users' => $users,
+            'comments' => $comments
+        ]);
+    }
 
     /**
      * Display a listing of the resource.

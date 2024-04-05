@@ -43,3 +43,6 @@ Route::post('/admin/recipes', [AdminRecipesController::class,'store'])->name('ad
 
 use App\Http\Controllers\RatingController;
 Route::post('/recettes/{url}', [RatingController::class,'store'])->name('ratings.store');
+
+use App\Http\Controllers\CommentaireController;
+Route::post('/recettes/{recipe}/comment', [CommentaireController::class, 'store'])->name('comment.store');

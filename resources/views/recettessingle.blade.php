@@ -38,7 +38,7 @@
         <span class="fas fa-star star" data-star="4" data-recipe-id="{{ $recipe->id }}"></span>
         <span class="fas fa-star star" data-star="5" data-recipe-id="{{ $recipe->id }}"></span>
         &nbsp; note: <span id="note">-</span>
-        <span > étoiles</span> 
+        <span > étoile(s)</span> 
         <button type="submit">Valider</button>
     </form>
     <br></br>
@@ -72,6 +72,44 @@
             });
         }
     </script>
+
+    <br>
+    <h2 class="is-size-4">Commentaires</h2>
+    <br>
+    @foreach ($comments as $comment)
+        @if ($comment->recipe_id == $recipe->id)
+            <div class="box">
+                <p><strong>{{ $comment->pseudo }}</strong></p>
+                <p>{{ $comment->content }}</p>
+                <p><small class="has-text-grey-dark">{{ $comment->created_at->format('d M Y H:i') }}</small></p>
+            </div>
+        @endif
+    @endforeach
+    <br>
+    <form action="{{ route('comment.store', ['recipe' => $recipe->id]) }}" method="post">
+        @csrf
+        <input class= "input" type="hidden" name="recipe_id" value="{{ $recipe->id }}">
+        <div class="field">
+            <label class="label">Pseudo</label>
+            <div class="control">
+                <input class="input" type="text" name="pseudo" placeholder="Votre pseudo">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Commentaire</label>
+            <div class="control">
+                <textarea class="textarea" name="content" placeholder="Votre commentaire"></textarea>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button class="button is-link">Envoyer</button>
+            </div>
+        </div>
+    </form>
+    
+
+
 @endsection
 
 
