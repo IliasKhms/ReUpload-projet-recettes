@@ -102,6 +102,7 @@
             </div>
         </div>
         <div class="field">
+        <div class="g-recaptcha" data-sitekey="6LfUGrIpAAAAAFpiMcHr7eJpumWQFL3NzKU8xQeW"></div>
             <div class="control">
                 <button class="button is-link">Envoyer</button>
             </div>
