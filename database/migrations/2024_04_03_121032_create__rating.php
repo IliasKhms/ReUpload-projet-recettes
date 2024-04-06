@@ -15,7 +15,7 @@ return new class extends Migration
                 $table->id();
                 $table->timestamps();
                 $table->foreignId('recipe_id')->constrained()->onDelete('cascade');
-                $table->integer('rating');
+                $table->decimal('rating', 5, 2); // 5 est la précision totale et 2 est l'échelle (nombre de chiffres après la virgule)
         });
     }
 

@@ -21,6 +21,7 @@
             echo $content;
             ?>
         </p>
+        <p> {{ number_format($recipe->rate_avg, 1) }}/5 <span class="fas fa-star star" style="color:#f5cb5c"></span></p>
         <a href="/recettes/{{ $recipe->url }}">Read More</a>
       </div>
     @endforeach

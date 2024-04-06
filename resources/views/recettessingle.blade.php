@@ -42,7 +42,7 @@
         <button type="submit">Valider</button>
     </form>
     <br></br>
-        <p> Note : {{ $recipe->rate_avg }}/5 </p>
+        <p> Note : {{ number_format($recipe->rate_avg, 1) }}/5 </p>
     <br></br>
     </div> 
        
@@ -77,14 +77,16 @@
     <h2 class="is-size-4">Commentaires</h2>
     <br>
     @foreach ($comments as $comment)
-        @if ($comment->recipe_id == $recipe->id)
-            <div class="box">
-                <p><strong>{{ $comment->pseudo }}</strong></p>
-                <p>{{ $comment->content }}</p>
+    @if ($comment->recipe_id == $recipe->id)
+        <div class="box">
+            <p><strong>{{ $comment->pseudo }}</strong></p>
+            <p>{{ $comment->content }}</p>
+            @if ($comment->created_at) <!-- Vérifie si la date de création est non nulle -->
                 <p><small class="has-text-grey-dark">{{ $comment->created_at->format('d M Y H:i') }}</small></p>
-            </div>
-        @endif
-    @endforeach
+            @endif
+        </div>
+    @endif
+@endforeach
     <br>
     <form action="{{ route('comment.store', ['recipe' => $recipe->id]) }}" method="post">
         @csrf
