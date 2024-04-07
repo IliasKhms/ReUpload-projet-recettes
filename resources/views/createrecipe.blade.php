@@ -1,7 +1,7 @@
 @extends('layouts/main')
 
 @section('content')
-<form action="{{ route('adminrecipes.store') }}" method="POST" class="form">
+<form action="{{ route('adminrecipes.store') }}" method="POST" class="form" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label for="title">Nom</label>
@@ -26,6 +26,8 @@
         <br>
         <label for="content">Préparation</label>
         <textarea type="text" name="content" id="content" placeholder="" required></textarea>
+        <label for="image">Ajoutez une image</label>
+        <input type="file" id="image" name="image" accept="image/*">
 
     </div>
     <input type="submit" class="btn" value="Créer recette"></input>

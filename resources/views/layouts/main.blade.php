@@ -36,8 +36,10 @@
              </div>
             <div class="navbar-item">
               <div class="field has-addons">
-                <div class="control">
-                  <input class="input" type="search" placeholder="Search" aria-label="Search">
+              <div class="control">
+                <form action="{{ route('recipes.search') }}" method="GET">
+                    <input class="input" name="search" type="search" placeholder="Search" aria-label="Search">
+                </form>
                 </div>
                 <div class="control">
                   <button class="button" type="submit">

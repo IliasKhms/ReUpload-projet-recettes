@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Recipe;
 
 class RecettesController extends Controller
 {
     function index() {
         $recipes = \App\Models\Recipe::all(); //get all recipes
         $users = \App\Models\User::all(); //get all users
+        $images = \App\Models\Image::all(); //get all images
         return view('recettes',
             array('recipes' => $recipes),
-            array('users' => $users)
+            array('users' => $users),
         );
     }
     /**
@@ -60,5 +62,19 @@ class RecettesController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+
+        $recipes = Recipe::where('title', 'like', "%{$search}%")
+            ->orWhere('content', 'like', "%{$search}%")
+            ->orWhereHas('ingredients', function ($query) use ($search) {
+                $query->where('name', 'like', "%{$search}%");
+            })
+            ->get();
+
+        return view('recettes', compact('recipes'));
     }
 }

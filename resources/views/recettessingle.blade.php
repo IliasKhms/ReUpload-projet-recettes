@@ -1,6 +1,16 @@
 @extends('layouts/main')
 
 @section('content')
+
+    @foreach ($images as $image)
+        @if ($image->id_recipe == $recipe->id)
+        <div style="display: flex; justify-content: center;">
+            <img src="{{ asset($image->content) }}" alt="Image de la recette" style="width: 500px; height: 400px;">
+        </div>
+        @endif
+    @endforeach
+    <br>
+
     <div>
         <span><small class="has-text-grey-dark">{{ $recipe->updated_at->format('d M Y H:i') }}</small></span>
         <h2 class="mt-2 mb-2 is-size-3 is-size-4-mobile has-text-weight-bold"><a href="/recettes/{{ $recipe->url }}"
@@ -45,7 +55,7 @@
         <p> Note : {{ number_format($recipe->rate_avg, 1) }}/5 </p>
     <br></br>
     </div> 
-       
+
     @if (session('success'))
         <div class="notification is-success">
             {{ session('success') }}
@@ -88,7 +98,7 @@
     @endif
 @endforeach
     <br>
-    <form action="{{ route('comment.store', ['recipe' => $recipe->id]) }}" method="post">
+    <form action="{{ route('comment.store', ['recipe' => $recipe->id]) }}" method="post"  enctype="multipart/form-data">
         @csrf
         <input class= "input" type="hidden" name="recipe_id" value="{{ $recipe->id }}">
         <div class="field">

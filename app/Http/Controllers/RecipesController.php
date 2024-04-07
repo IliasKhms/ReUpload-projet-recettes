@@ -10,11 +10,12 @@ class RecipesController extends Controller
         $recipe = \App\Models\Recipe::where('url', $recipe_url)->first(); // Récupérer la recette correspondant à l'URL
         $users = \App\Models\User::all(); // Récupérer tous les utilisateurs
         $comments = \App\Models\Commentaire::where('recipe_id', $recipe->id)->get(); // Récupérer tous les commentaires associés à cette recette
-    
+        $images = \App\Models\Image::all(); //get all images
         return view('recettessingle', [
             'recipe' => $recipe,
             'users' => $users,
-            'comments' => $comments
+            'comments' => $comments,
+            'images' => $images
         ]);
     }
 

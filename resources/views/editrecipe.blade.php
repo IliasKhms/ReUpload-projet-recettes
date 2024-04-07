@@ -1,7 +1,7 @@
 @extends('layouts/main')
 
 @section('content')
-<form action="{{ route('adminrecipes.update', $recipe->id) }}" method="POST" class="form">
+<form action="{{ route('adminrecipes.update', $recipe->id) }}" method="POST" class="form" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="form-group">
@@ -29,6 +29,8 @@
         <textarea type="text" name="content" id="content" required>{{ old('content', $recipe->content) }}</textarea>
 
     </div>
+    <label for="image">Ajoutez une image</label>
+        <input type="file" id="image" name="image" accept="image/*">
     <input type="submit" class="btn" value="Mettre à jour"></input>
 </form>
 

@@ -32,7 +32,7 @@ class AdminRecipesController extends Controller
      */
     public function store(Request $request)
     {
-
+    //dd($request->all());
     $recipe = new \App\Models\Recipe();
     $recipe->title = $request->title;
     $recipe->content = $request->content;
@@ -48,8 +48,28 @@ class AdminRecipesController extends Controller
         $ingredient->type = $request->ingredient_type[$key];
         $ingredient->save();
     }
+    
+    //fait en sorte que si il y a des images téléchargées, qu'elles soient enregistrées dans le dossier public/images
+    if ($request->hasFile('image')) {
+        $image = request()->file('image'); 
+        $filename = $recipe->title . '.' . $image->getClientOriginalExtension();
+        $path = 'public/images/';
+        $image = $image->storeAs($path, $filename);
+        $pathBDD = "/storage/images/" . $filename;
+        
+        $imageModel = new \App\Models\Image();
+        $imageModel->id_recipe = $recipe->id;
+        $imageModel->content = $pathBDD;
+        $imageModel->save();
+       
+    }
+      
+        //dd($imageModel->content);
 
+    
+    
     return redirect('/admin/recipes');
+   
 }
 
     /**
@@ -91,6 +111,23 @@ class AdminRecipesController extends Controller
             $ingredient->save();
         }
 
+
+        if ($request->hasFile('image')) {
+            $image = \App\Models\Image::where('id_recipe', $recipe->id)->first(); 
+            $path = 'public/images/';
+            $filename = $recipe->title . '.' . $request->file('image')->getClientOriginalExtension();
+            $pathBDD = "/storage/images/" . $filename;     
+            $storedImage = $request->file('image')->storeAs($path, $filename); 
+            if($image == null){
+                $image = new \App\Models\Image();
+                $image->id_recipe = $recipe->id;
+                $image->content = $pathBDD;
+                $image->save();    
+            }else{
+                $image->content = $pathBDD;
+                $image->save();
+            }
+        }
         return redirect('/admin/recipes');
     }
 

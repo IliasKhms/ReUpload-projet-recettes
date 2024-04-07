@@ -28,6 +28,7 @@ Route::post('/contacts', [ContactController::class, 'store']);
 
 use App\Http\Controllers\RecettesController;
 Route::get('/recettes', [RecettesController::class, 'index']);
+Route::get('recipes/search', [RecettesController::class, 'search'])->name('recipes.search');
 
 
 use App\Http\Controllers\RecipesController;
