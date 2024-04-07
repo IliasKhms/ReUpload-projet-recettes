@@ -48,3 +48,4 @@ Route::post('/recettes/{url}', [RatingController::class,'store'])->name('ratings
 use App\Http\Controllers\CommentaireController;
 Route::post('/recettes/{recipe}/comment', [CommentaireController::class, 'store'])->name('comment.store');
 Route::delete('/admin/comment/{id}', [CommentaireController::class, 'destroy'])->name('comment.destroy');
+Route::get('/admin/comment', [CommentaireController::class, 'index'])->name('comment.index');

@@ -18,11 +18,15 @@ class CommentaireSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach (range(1,10) as $index) {
+        foreach (range(1,100) as $index) {
             DB::table('commentaires')->insert([
                 'pseudo' => $faker->name,
                 'content' => $faker->text,
                 'recipe_id' => $faker->numberBetween(1, 10), // Assurez-vous que ces IDs existent dans votre table recipes
+                'created_at' => $date = $faker->dateTimeThisYear, // Generates a random date and time in the current year
+                'updated_at' => $date, // Use the same date and time as created_at
+
+
             ]);
         }
     }

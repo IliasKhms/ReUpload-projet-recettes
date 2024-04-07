@@ -43,6 +43,18 @@ class CommentaireController extends Controller
     return back()->with('success', 'Votre commentaire a bien été ajouté');
     }
 
+    public function recipe()
+{
+    return $this->belongsTo('App\Models\Recipe', 'id_recipe');
+}
+
+    public function index()
+    {
+        $comments = Commentaire::all();
+        $recipes = Recipe::all();
+
+        return view('commentadmin', ['comments' => $comments, 'recipes' => $recipes]);
+    }
     public function destroy($id)
     {
         $comment = Commentaire::find($id);
