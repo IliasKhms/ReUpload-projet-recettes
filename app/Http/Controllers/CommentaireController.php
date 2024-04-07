@@ -43,4 +43,12 @@ class CommentaireController extends Controller
     return back()->with('success', 'Votre commentaire a bien été ajouté');
     }
 
+    public function destroy($id)
+    {
+        $comment = Commentaire::find($id);
+        $comment->delete();
+
+        return redirect()->back();
+    }
+
 }
